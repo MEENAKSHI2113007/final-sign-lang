@@ -67,8 +67,14 @@ const ImageDisplay = ({ setCurrentWord, recognizedSigns, setRecognizedSigns }) =
   };
 
   const handleClear = () => {
-    setRecognizedSigns([]); // Clear the recognized signs array
-    setFeedback(""); // Clear any feedback
+    setRecognizedSigns([]);
+    setFeedback("");
+  };
+
+  const handleBackspace = () => {
+    if (recognizedSigns.length > 0) {
+      setRecognizedSigns(recognizedSigns.slice(0, -1));
+    }
   };
 
   const handleSubmit = () => {
@@ -133,6 +139,12 @@ const ImageDisplay = ({ setCurrentWord, recognizedSigns, setRecognizedSigns }) =
           style={{ margin: "5px", padding: "10px", fontSize: "1rem" }}
         >
           Clear
+        </button>
+        <button
+          onClick={handleBackspace}
+          style={{ margin: "5px", padding: "10px", fontSize: "1rem" }}
+        >
+          Backspace
         </button>
         <button
           onClick={handleSubmit}
